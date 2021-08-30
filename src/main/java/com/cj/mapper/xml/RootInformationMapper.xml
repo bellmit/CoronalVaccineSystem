@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.mapper.RootInformationMapper">
+
+    <resultMap id="myRootMap" type="com.cj.pojo.RootInformation">
+        <result property="id" column="id" javaType="Integer" jdbcType="INTEGER"></result>
+        <result property="username" column="username" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="password" column="password" javaType="String" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <insert id="addRoot" parameterType="com.cj.pojo.RootInformation">
+        insert into root_information(username,password)
+        values (#{username},#{password});
+    </insert>
+
+    <update id="updateRoot" parameterType="com.cj.pojo.RootInformation">
+        update root_information
+        <trim prefix="set" prefixOverrides="" suffix="" suffixOverrides=",">
+            <if test="username!=null">
+                  username=#{username},
+            </if>
+            <if test="password!=null">
+                password=#{password},
+            </if>
+        </trim>
+            where id=#{id}
+    </update>
+
+    <select id="selectRoot" resultMap="myRootMap">
+        select username,password
+        from root_information
+        where id=#{id};
+    </select>
+
+    <insert id="addStation" parameterType="com.cj.pojo.StationInformation">
+        insert into station_information(id,username,phone,vaccination_nums,vaccination_persons,nucleic_acid_nums,nucleic_acid_person,volunteers_needed,volunteers_nums,vaccination_appoint_nums,nucleic_appoint_nums,commuters)
+        values(#{id},#{username},#{phone},#{vaccination_nums},#{vaccination_persons},#{nucleic_acid_nums},#{nucleic_acid_person},#{volunteers_needed},#{volunteers_nums},#{vaccination_appoint_nums},#{nucleic_appoint_nums},#{commuters})
+    </insert>
+
+    <update id="updateStation" parameterType="com.cj.pojo.StationInformation">
+        update station_information
+        <trim prefix="set" prefixOverrides="" suffix="" suffixOverrides=",">
+            <if test="username!=null">
+                username=#{username},
+            </if>
+            <if test="password!=null">
+                phone=#{phone},
+            </if>
+            <if test="vaccination_nums!=null">
+                vaccination_nums=#{vaccination_nums},
+            </if>
+            <if test="vaccination_persons!=null">
+                vaccination_persons=#{vaccination_persons},
+            </if>
+            <if test="nucleic_acid_nums!=null">
+                nucleic_acid_nums=#{nucleic_acid_nums},
+            </if>
+            <if test="nucleic_acid_person!=null">
+                nucleic_acid_person=#{nucleic_acid_person},
+            </if>
+            <if test="volunteers_needed!=null">
+                volunteers_needed=#{volunteers_needed},
+            </if>
+            <if test="volunteers_nums!=null">
+                volunteers_nums=#{volunteers_nums},
+            </if>
+            <if test="vaccination_appoint_nums!=null">
+                vaccination_appoint_nums=#{vaccination_appoint_nums},
+            </if>
+            <if test="nucleic_appoint_nums!=null">
+                nucleic_appoint_nums=#{nucleic_appoint_nums},
+            </if>
+            <if test="commuters!=null">
+                commuters=#{commuters},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+
+    <select id="selectStation" resultType="com.cj.pojo.StationInformation" parameterType="int">
+        select * from station_information
+        where id=#{id}
+    </select>
+
+    <select id="selectStationList" resultType="com.cj.pojo.StationInformation">
+        select * from station_information
+    </select>
+
+    <delete id="deleteStation" parameterType="int">
+        delete from station_information
+        where id=#{id}
+    </delete>
+
+</mapper>
