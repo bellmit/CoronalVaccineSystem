@@ -16,6 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/volunteers-information")
 public class VolunteersInformationController {
-
+//这部分等后续有时间
 }
 
