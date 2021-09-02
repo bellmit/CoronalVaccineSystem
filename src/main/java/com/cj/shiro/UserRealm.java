@@ -10,6 +10,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.Resource;
 
@@ -34,7 +35,7 @@ public class UserRealm extends AuthorizingRealm {
             if (token.getUsername() == null || token.getPassword() == null) {
                 throw new GlobalException(ResultEnums.PARAM_ERROR);
             }
-            // 9.1. 为了方便演示，我这里写死了用户admin-name密码admin-pwd才能登录
+            //认证，查看数据库是否有这样的用户信息
             QueryWrapper<User> wrapper = new QueryWrapper<>();
             wrapper.eq("username",token.getUsername());
             User user = userService.getOne(wrapper);
@@ -53,8 +54,7 @@ public class UserRealm extends AuthorizingRealm {
         // 10. 前面被roles拦截后，需要授权才能登录，SecurityManager需要调用这里进行权限查询
         @Override
         protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-
-            // 10.1. 为了方便演示，这里直接写死返回了admin角色，所有能登录的角色都是admin了
+            //授权，通过用户角色给用户授权
             SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
             User userInfo  = (User)principals.getPrimaryPrincipal();
             authorizationInfo.addRole(userInfo.getRole());

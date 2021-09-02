@@ -11,9 +11,6 @@ class CoronalVaccineSystemApplicationTests {
 
     @Test
     void contextLoads() {
-        ApplicationContext ac = new FileSystemXmlApplicationContext("application-pro.yml");
-        Object dosomething = ac.getBean("user");
-        System.out.println(dosomething);
     }
 
 }

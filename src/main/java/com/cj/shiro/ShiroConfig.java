@@ -100,16 +100,16 @@ public class ShiroConfig {
          * 配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)即可实现此功能
          * @return
          */
-        @Bean
-        public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
-            DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-            advisorAutoProxyCreator.setProxyTargetClass(true);
-            return advisorAutoProxyCreator;
-        }
-        @Bean
-        public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Autowired DefaultWebSecurityManager securityManager){
-            AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-            authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
-            return authorizationAttributeSourceAdvisor;
-        }
+//        @Bean
+//        public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+//            DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+//            advisorAutoProxyCreator.setProxyTargetClass(true);
+//            return advisorAutoProxyCreator;
+//        }
+//        @Bean
+//        public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Autowired DefaultWebSecurityManager securityManager){
+//            AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+//            authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+//            return authorizationAttributeSourceAdvisor;
+//        }
 }
